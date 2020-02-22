@@ -11,8 +11,8 @@
     "api:clean": "rm -rf api_build",
     "api:build": "tsc",
     "app:build": "yarn client:clean && yarn api:clean && yarn client:build && yarn api:build",
-    "dev:deploy": "yarn app:build && node build/src/api/server.js",
-    "prod:deploy": "yarn app:build && pm2 start --name 'prod:appname' build/src/api/server.js",
+    "dev:deploy": "yarn app:build && node api_build/src/api/server.js",
+    "prod:deploy": "yarn app:build && pm2 start --name 'prod:appname' api_build/src/api/server.js",
     "prod:restart": "yarn app:build && pm2 restart 'prod:appname'"
   },
   "author": "Rodrick Alcantara",

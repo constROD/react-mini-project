@@ -79,6 +79,7 @@ const TableContent = () => {
 
   const handleOnClickDelete = async (key) => {
     await CategoriesService.deleteCategory(key)
+    toast.success('Successfully deleted!')
   }
 
   const handleOnClickSaveModal = async () => {

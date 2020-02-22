@@ -54,7 +54,7 @@ module.exports = {
     alias: { 'react-dom': '@hot-loader/react-dom' }
   },
   devServer: {
-    port: 3000,
+    port: CONFIG.APP_PORT,
     hot: true,
     historyApiFallback: true,
   },

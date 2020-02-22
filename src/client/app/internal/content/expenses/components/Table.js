@@ -10,8 +10,6 @@ import ExpensesService from '../../../../../shared/impl/Expenses'
 
 import ModalContent from './Modal'
 
-const ExpensesClass = new ExpensesService()
-
 const TableContent = () => {
   const EXPENSE_DEFAULT = EXPENSES_MODEL.reduce((accuExpense, currentExpense) => (
     { ...accuExpense, [currentExpense.field]: currentExpense.defaultValue }
@@ -92,20 +90,21 @@ const TableContent = () => {
   }
 
   const handleOnClickDelete = async (key) => {
-    await ExpensesClass.deleteExpense(key)
+    await ExpensesService.deleteExpense(key)
+    toast.success('Successfully deleted!')
   }
 
   const handleOnClickSaveModal = async () => {
     if (handleOnValidate()) {
       if (modal.type === 'Add') {
-        await ExpensesClass.createExpense(modal.expense)
+        await ExpensesService.createExpense(modal.expense)
         toast.success('Successfully added!')
       } else {
         const expense = modal.expense
         const expenseKey = expense.key
         delete expense.key
 
-        await ExpensesClass.updateExpense(expenseKey, expense)
+        await ExpensesService.updateExpense(expenseKey, expense)
         toast.success('Successfully updated!')
       }
 
