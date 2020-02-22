@@ -28,6 +28,7 @@ const TableContent = () => {
   const [modal, setModal] = useState(initialState)
   const [categories, setCategories] = useState({})
   const [dataSource, setDataSource] = useState([])
+  const [inProgress, setInProgress] = useState(false)
 
   useEffect(() => {
     const categoriesDatabase = firebase.database().ref('database/categories')
@@ -83,6 +84,8 @@ const TableContent = () => {
   }
 
   const handleOnClickSaveModal = async () => {
+    setInProgress(true)
+
     if (handleOnValidate()) {
       if (modal.type === 'Add') {
         await CategoriesService.createCategory(modal.category)
@@ -96,11 +99,13 @@ const TableContent = () => {
         toast.success('Successfully updated!')
       }
 
+      setInProgress(false)
       setModal(initialState)
     }
   }
 
   const handleOnClickCancelModal = () => {
+    setInProgress(false)
     setModal(initialState)
   }
 
@@ -140,8 +145,22 @@ const TableContent = () => {
         onCancel={handleOnClickCancelModal}
         footer={
           <div className="categories-modal-content">
-            <Button type="primary" className="save-button" onClick={handleOnClickSaveModal}>Save</Button>
-            <Button type="default" className="cancel-button" onClick={handleOnClickCancelModal}>Cancel</Button>
+            <Button
+              type="primary"
+              className="save-button"
+              onClick={handleOnClickSaveModal}
+              disabled={inProgress}
+            >
+              Save
+            </Button>
+            <Button
+              type="default"
+              className="cancel-button"
+              onClick={handleOnClickCancelModal}
+              disabled={inProgress}
+            >
+              Cancel
+            </Button>
           </div>
         }
       >

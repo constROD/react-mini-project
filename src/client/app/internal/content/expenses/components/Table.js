@@ -29,6 +29,7 @@ const TableContent = () => {
   const [expenses, setExpenses] = useState({})
   const [categories, setCategories] = useState({})
   const [dataSource, setDataSource] = useState([])
+  const [inProgress, setInProgress] = useState(false)
 
   useEffect(() => {
     const expensesDatabase = firebase.database().ref('database/expenses')
@@ -95,6 +96,8 @@ const TableContent = () => {
   }
 
   const handleOnClickSaveModal = async () => {
+    setInProgress(true)
+
     if (handleOnValidate()) {
       if (modal.type === 'Add') {
         await ExpensesService.createExpense(modal.expense)
@@ -108,11 +111,13 @@ const TableContent = () => {
         toast.success('Successfully updated!')
       }
 
+      setInProgress(false)
       setModal(initialState)
     }
   }
 
   const handleOnClickCancelModal = () => {
+    setInProgress(false)
     setModal(initialState)
   }
 
@@ -165,6 +170,7 @@ const TableContent = () => {
               type="primary"
               className="save-button"
               onClick={handleOnClickSaveModal}
+              disabled={inProgress}
             >
               Save
             </Button>
@@ -172,6 +178,7 @@ const TableContent = () => {
               type="default"
               className="cancel-button"
               onClick={handleOnClickCancelModal}
+              disabled={inProgress}
             >
               Cancel
             </Button>
