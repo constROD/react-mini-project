@@ -58,7 +58,7 @@ Note that this is for `testing purpose`
 - `yarn dev:deploy` to build api and client also to run the app bundle using `node`
 - `yarn prod:deploy` to build api and client also to run the app bundle `pm2` [Read more](https://pm2.keymetrics.io/docs/usage/pm2-doc-single-page/)
 - `yarn prod:restart` to build api and client and to restart the instance.
-- note that this api and client has only 1 instance that's why it can run on the same port default is `3001`.
+- note that this api and client is only 1 instance thats why this two app can run on the same port and the default is `3001`.
 
 to set your own config just create a file `.env` and save it also in `\react-mini-project`
 ```env
