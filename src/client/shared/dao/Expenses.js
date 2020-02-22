@@ -1,13 +1,13 @@
 import axios from 'axios'
 
 class Expenses {
-  constructor () {
-    this.path = `${process.env.API_URL}/expenses`
+  constructor() {
+    this.url = `${process.env.API_URL}/expenses`
   }
 
-  static async createExpense(dataObj) {
+  async createExpense(dataObj) {
     const results = await axios({
-      url: `${this.path}/create`,
+      url: `${this.url}/create`,
       method: 'POST',
       data: {
         dataObj
@@ -17,9 +17,9 @@ class Expenses {
     return results.data
   }
 
-  static async updateExpense(key, dataObj) {
+  async updateExpense(key, dataObj) {
     const results = await axios({
-      url: `${process.env.API_URL}/expenses/update`,
+      url: `${this.url}/update`,
       method: 'POST',
       data: {
         key,
@@ -30,9 +30,9 @@ class Expenses {
     return results.data
   }
 
-  static async deleteExpense(key) {
+  async deleteExpense(key) {
     const results = await axios({
-      url: `${process.env.API_URL}/expenses/delete`,
+      url: `${this.url}/delete`,
       method: 'POST',
       data: {
         key

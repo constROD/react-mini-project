@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "client:start": "webpack-dev-server --open --mode development",
-    "client:clean": "rm -rf dist",
+    "client:clean": "rm -rf client_build",
     "client:build": "webpack --mode production",
     "api:start": "ts-node-dev --respawn --transpileOnly src/api/server.ts",
-    "api:clean": "rm -rf build",
+    "api:clean": "rm -rf api_build",
     "api:build": "tsc",
     "app:build": "yarn client:clean && yarn api:clean && yarn client:build && yarn api:build",
     "dev:deploy": "yarn app:build && node build/src/api/server.js",

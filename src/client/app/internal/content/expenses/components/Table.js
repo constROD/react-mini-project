@@ -10,6 +10,8 @@ import ExpensesService from '../../../../../shared/impl/Expenses'
 
 import ModalContent from './Modal'
 
+const ExpensesClass = new ExpensesService()
+
 const TableContent = () => {
   const EXPENSE_DEFAULT = EXPENSES_MODEL.reduce((accuExpense, currentExpense) => (
     { ...accuExpense, [currentExpense.field]: currentExpense.defaultValue }
@@ -35,10 +37,10 @@ const TableContent = () => {
     const categoriesDatabase = firebase.database().ref('database/categories')
 
     const expensesListener = expensesDatabase.on('value', snapshot => {
-      snapshot.val() === null ? setExpenses({}) : setExpenses(snapshot.val())
+      setExpenses(snapshot.val() || {})
     })
     const categoriesListener = categoriesDatabase.on('value', snapshot => {
-      snapshot.val() === null ? setCategories({}) : setCategories(snapshot.val())
+      setCategories(snapshot.val() || {})
     })
 
     return () => {
@@ -90,20 +92,20 @@ const TableContent = () => {
   }
 
   const handleOnClickDelete = async (key) => {
-    await ExpensesService.deleteExpense(key)
+    await ExpensesClass.deleteExpense(key)
   }
 
   const handleOnClickSaveModal = async () => {
     if (handleOnValidate()) {
       if (modal.type === 'Add') {
-        await ExpensesService.createExpense(modal.expense)
+        await ExpensesClass.createExpense(modal.expense)
         toast.success('Successfully added!')
       } else {
         const expense = modal.expense
         const expenseKey = expense.key
         delete expense.key
 
-        await ExpensesService.updateExpense(expenseKey, expense)
+        await ExpensesClass.updateExpense(expenseKey, expense)
         toast.success('Successfully updated!')
       }
 

@@ -1,9 +1,13 @@
 import axios from 'axios'
 
 class Categories {
-  static async createCategory(dataObj) {
+  constructor() {
+    this.url = `${process.env.API_URL}/categories`
+  }
+
+  async createCategory(dataObj) {
     const results = await axios({
-      url: `${process.env.API_URL}/categories/create`,
+      url: `${this.url}/create`,
       method: 'POST',
       data: {
         dataObj
@@ -13,9 +17,9 @@ class Categories {
     return results.data
   }
 
-  static async updateCategory(key, dataObj) {
+  async updateCategory(key, dataObj) {
     const results = await axios({
-      url: `${process.env.API_URL}/categories/update`,
+      url: `${this.url}/update`,
       method: 'POST',
       data: {
         key,
@@ -26,9 +30,9 @@ class Categories {
     return results.data
   }
 
-  static async deleteCategory(key) {
+  async deleteCategory(key) {
     const results = await axios({
-      url: `${process.env.API_URL}/categories/delete`,
+      url: `${this.url}/delete`,
       method: 'POST',
       data: {
         key

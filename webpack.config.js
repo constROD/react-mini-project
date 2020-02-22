@@ -22,7 +22,7 @@ const processEnv = new webpack.DefinePlugin({
 module.exports = {
   entry: ['babel-polyfill', './src/client/index.js'],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'client_build'),
     publicPath: '/',
     filename: 'index.js'
   },

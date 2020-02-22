@@ -2,8 +2,8 @@
 node_modules
 
 # Build
-build
-dist
+client_build
+api_build
 
 # Lock
 package-lock.json
@@ -11,3 +11,7 @@ yarn.lock
 
 # Environment
 .env
+
+# Firebase
+firebase-config.js
+firebase-key.json
