@@ -1,0 +1,91 @@
+/* Grid Layout */
+.expenses-main {
+  display: grid;
+  grid-template-rows: 100px 1fr 50px;
+  grid-template-columns: 50px 1fr 50px;
+  row-gap: 25px;
+
+  .body-container {
+    grid-column: ~'2/3';
+    grid-row: ~'2/3';
+    display: grid;
+    grid-template-rows: 1fr;
+
+    .table-main {
+      grid-row: ~'1/2';
+      display: grid;
+      grid-template-rows: auto 1fr;
+      row-gap: 20px;
+      
+      .expenses-header {
+        grid-row: ~'1/2';
+        display: grid;
+        grid-template-columns: 1fr 150px;
+      }
+      .expenses-table {
+        grid-row: ~'2/3';
+  
+        table {
+          tbody {
+            tr {
+              .action-column {
+                display: grid;
+                grid-auto-flow: column;
+                grid-auto-columns: 20px;
+                column-gap: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Styles */
+.expenses-main {
+  .body-container {
+    .table-main {
+      .expenses-header {
+        span {
+          font-size: 20px;
+          font-weight: 900;
+          letter-spacing: 2px;
+        }
+        Button {
+          background: @color-primary;
+    
+          span {
+            font-size: 12px;
+            font-weight: 500;
+            color: @color-light;
+          }
+        }
+      }
+      .expenses-table {
+        table {
+          thead {
+            tr th {
+              background: @color-primary;
+              color: @color-light;
+            }
+          }
+          tbody {
+            tr {
+              .action-column {
+                .edit-icon,
+                .delete-icon {
+                  cursor: pointer;
+  
+                  &:hover i {
+                    color: @color-primary;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

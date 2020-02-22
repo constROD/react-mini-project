@@ -4,6 +4,8 @@ import cors from 'cors'
 import path from 'path'
 
 import { app } from './routes/App'
+import { categories } from './routes/Categories'
+import { expenses } from './routes/Expenses'
 
 class App {
   public express: Application
@@ -19,11 +21,13 @@ class App {
     this.express.use(bodyParser.json())
     this.express.use(bodyParser.urlencoded({ extended: false }))
     this.express.use(express.json())
-    this.express.use(express.static(path.join(__dirname, '../dist')))
+    this.express.use(express.static(path.join(__dirname, '../../../dist')))
   }
 
   private setRoutes(): void {
     this.express.use('/', app)
+    this.express.use('/categories', categories)
+    this.express.use('/expenses', expenses)
   }
 }
 

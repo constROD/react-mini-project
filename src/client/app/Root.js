@@ -5,7 +5,7 @@ import External from './external/Root'
 
 const Root = () => {
   return (
-    <External />
+    <Internal />
   )
 }
 
