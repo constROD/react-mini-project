@@ -77,13 +77,25 @@ API_PORT=3001   \* Your api port *\
 
 ```javascript
 // ...some code
+
 const server = {
     key: fs.readFileSync('SSL KEY PATH'),
     cert: fs.readFileSync('SSL CERT PATH'),
     ca: fs.readFileSync('SSL CA PATH')
   }
+  
 // ...end of some code
 ```
+
+- and set your `APP_ZONE` to `production` in `.env` file.
+
+```env
+...some config
+
+APP_ZONE=production   \* Your zone either development or production *\
+
+...end some config
+``` 
 
 Thank you.
  
