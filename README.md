@@ -49,7 +49,7 @@ Note that this is for `testing purpose`
 - open two terminal to run seperately the api and the client.
 - on the two terminal just `cd react-mini-project` to go into the project root
 - `yarn client:start` to start the hot-reloading development server of client.
-- `yarn client:api` to start the hot-reloading development server of api.
+- `yarn api:start` to start the hot-reloading development server of api.
 - `open http://localhost:3000` to open the site in your favorite browser
 - note: that the default port in config of client is `3000` & for api is `3001`
 
